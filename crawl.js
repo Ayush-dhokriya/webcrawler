@@ -13,8 +13,12 @@ function getURLsFromHTML(htmlBody, baseURL) {
         console.log(err.message);
       }
     } else {
-      const urlObj = new URL(`${baseURL}`);
-      urls.push(urlObj.href);
+      try {
+        const urlObj = new URL(`${baseURL}`);
+        urls.push(urlObj.href);
+      } catch (err) {
+        console.log(`error with absolute url: ${err.message}`);
+      }
     }
   }
   return urls;
